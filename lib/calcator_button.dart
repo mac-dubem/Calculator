@@ -5,20 +5,23 @@ class CalcButton extends StatelessWidget {
     super.key,
     required this.buttonText,
     required this.buttonColour,
+    required this.onPressed,
   });
 
   final String buttonText;
   final Color buttonColour;
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        print("i press");
-      },
+      onTap: onPressed,
+      //  () {
+      //   print("i press");
+      // },
       child: Container(
-        height: 75,
-        width: 75,
+        height: (MediaQuery.of(context).size.width - 30 - 24) / 4,
+        width: (MediaQuery.of(context).size.width - 30 - 24) / 4,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(70),
           color: buttonColour,
@@ -28,7 +31,7 @@ class CalcButton extends StatelessWidget {
             buttonText,
             style: TextStyle(
               color: Colors.white,
-              fontSize: 35,
+              fontSize: 40,
               fontWeight: FontWeight.bold,
             ),
           ),
