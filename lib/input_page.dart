@@ -3,59 +3,17 @@ import 'calcator_button.dart';
 import 'package:calculator/constants.dart';
 import 'calculator_brain.dart';
 
+CalculatorBrain brain = CalculatorBrain();
+
 class InputPage extends StatefulWidget {
   const InputPage({super.key});
-
-  //  CalculatorBrain brain = CalculatorBrain();
-  // bool waitingForSecondNum = false;
 
   @override
   State<InputPage> createState() => _InputPageState();
 }
 
 class _InputPageState extends State<InputPage> {
-  int displayText = 4;
-
-  // setState(() {
-  //     if (buttonText == "AC") {
-  //       displayText = "0";
-  //       brain.clear();
-  //       waitingForSecondNum = false;
-  //     } else if (["+", "-", "x", "/"].contains(buttonText)) {
-  //       brain.setFirstNum(double.tryParse(displayText) ?? 0);
-  //       brain.setOperator(buttonText);
-  //       waitingForSecondNum = true;
-  //       displayText = "0";
-  //     } else if (buttonText == "=") {
-  //       brain.setSecondNum(double.tryParse(displayText) ?? 0);
-  //       displayText = brain.calculate();
-  //       brain.clear();
-  //       waitingForSecondNum = false;
-  //     } else if (buttonText == ".") {
-  //       if (!displayText.contains(".")) {
-  //         displayText += ".";
-  //       }
-  //     } else if (buttonText == "+/-") {
-  //       if (displayText != "0") {
-  //         if (displayText.startsWith("-")) {
-  //           displayText = displayText.substring(1);
-  //         } else {
-  //           displayText = "-$displayText";
-  //         }
-  //       }
-  //     } else if (buttonText == "%") {
-  //       double num = double.tryParse(displayText) ?? 0;
-  //       displayText = (num / 100).toString();
-  //     } else {
-  //       // Number pressed
-  //       if (displayText == "0" || waitingForSecondNum) {
-  //         displayText = buttonText;
-  //         waitingForSecondNum = false;
-  //       } else {
-  //         displayText += buttonText;
-  //       }
-  //     }
-  //   });
+  String displayText = "0";
 
   @override
   Widget build(BuildContext context) {
@@ -75,10 +33,11 @@ class _InputPageState extends State<InputPage> {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
+                // crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    displayText.toString(),
-                    // textAlign: TextAlign.right,
+                    displayText,
+                    textAlign: TextAlign.right,
                     style: TextStyle(
                       fontSize: 80,
                       fontWeight: FontWeight.bold,
@@ -119,22 +78,31 @@ class _InputPageState extends State<InputPage> {
                   CalcButton(
                     buttonText: "AC",
                     buttonColour: buttonColor1,
-                    onPressed: () {},
+                    onPressed: (buttontext) {
+                      brain.input(buttontext);
+                      print(buttontext);
+                    },
                   ),
                   CalcButton(
                     buttonText: "+/-",
                     buttonColour: buttonColor1,
-                    onPressed: () {},
+                    onPressed: (buttontext) {
+                      print(buttontext);
+                    },
                   ),
                   CalcButton(
                     buttonText: "%",
                     buttonColour: buttonColor1,
-                    onPressed: () {},
+                    onPressed: (buttontext) {
+                      print(buttontext);
+                    },
                   ),
                   CalcButton(
                     buttonText: "/",
                     buttonColour: Colors.orange,
-                    onPressed: () {},
+                    onPressed: (buttontext) {
+                      print(buttontext);
+                    },
                   ),
                 ],
               ),
@@ -144,22 +112,42 @@ class _InputPageState extends State<InputPage> {
                   CalcButton(
                     buttonText: "7",
                     buttonColour: buttonColor2,
-                    onPressed: () {},
+                    onPressed: (buttontext) {
+                      setState(() {
+                        brain.input(buttontext);
+                        displayText = brain.displayText ?? "0";
+                        print(buttontext);
+                      });
+                    },
                   ),
                   CalcButton(
                     buttonText: "8",
                     buttonColour: buttonColor2,
-                    onPressed: () {},
+                    onPressed: (buttontext) {
+                      setState(() {
+                        brain.input(buttontext);
+                        displayText = brain.displayText ?? "0";
+                      });
+                      print(buttontext);
+                    },
                   ),
                   CalcButton(
                     buttonText: "9",
                     buttonColour: buttonColor2,
-                    onPressed: () {},
+                    onPressed: (buttontext) {
+                      setState(() {
+                        brain.input(buttontext);
+                        displayText = brain.displayText ?? "0";
+                      });
+                      print(buttontext);
+                    },
                   ),
                   CalcButton(
                     buttonText: "x",
                     buttonColour: Colors.orange,
-                    onPressed: () {},
+                    onPressed: (buttontext) {
+                      print(buttontext);
+                    },
                   ),
                 ],
               ),
@@ -169,22 +157,42 @@ class _InputPageState extends State<InputPage> {
                   CalcButton(
                     buttonText: "4",
                     buttonColour: buttonColor2,
-                    onPressed: () {},
+                    onPressed: (buttontext) {
+                      setState(() {
+                        brain.input(buttontext);
+                        displayText = brain.displayText ?? "0";
+                      });
+                      print(buttontext);
+                    },
                   ),
                   CalcButton(
                     buttonText: "5",
                     buttonColour: buttonColor2,
-                    onPressed: () {},
+                    onPressed: (buttontext) {
+                      setState(() {
+                        brain.input(buttontext);
+                        displayText = brain.displayText ?? "0";
+                      });
+                      print(buttontext);
+                    },
                   ),
                   CalcButton(
                     buttonText: "6",
                     buttonColour: buttonColor2,
-                    onPressed: () {},
+                    onPressed: (buttontext) {
+                      setState(() {
+                        brain.input(buttontext);
+                        displayText = brain.displayText ?? "0";
+                      });
+                      print(buttontext);
+                    },
                   ),
                   CalcButton(
                     buttonText: "-",
                     buttonColour: Colors.orange,
-                    onPressed: () {},
+                    onPressed: (buttontext) {
+                      print(buttontext);
+                    },
                   ),
                 ],
               ),
@@ -194,22 +202,40 @@ class _InputPageState extends State<InputPage> {
                   CalcButton(
                     buttonText: "1",
                     buttonColour: buttonColor2,
-                    onPressed: () {},
+                    onPressed: (buttontext) {
+                      setState(() {
+                        brain.input(buttontext);
+                        displayText = brain.displayText ?? "0";
+                      });
+                      print(buttontext);
+                    },
                   ),
                   CalcButton(
                     buttonText: "2",
                     buttonColour: buttonColor2,
-                    onPressed: () {},
+                    onPressed: (buttontext) {
+                      brain.input(buttontext);
+                      displayText = brain.displayText ?? "0";
+                      print(buttontext);
+                    },
                   ),
                   CalcButton(
                     buttonText: "3",
                     buttonColour: buttonColor2,
-                    onPressed: () {},
+                    onPressed: (buttontext) {
+                      setState(() {
+                        brain.input(buttontext);
+                        displayText = brain.displayText ?? "0";
+                      });
+                      print(buttontext);
+                    },
                   ),
                   CalcButton(
                     buttonText: "+",
                     buttonColour: Colors.orange,
-                    onPressed: () {},
+                    onPressed: (buttontext) {
+                      print(buttontext);
+                    },
                   ),
                 ],
               ),
@@ -219,22 +245,34 @@ class _InputPageState extends State<InputPage> {
                   CalcButton(
                     buttonText: "?",
                     buttonColour: buttonColor2,
-                    onPressed: () {},
+                    onPressed: (buttontext) {
+                      print(buttontext);
+                    },
                   ),
                   CalcButton(
                     buttonText: "0",
                     buttonColour: buttonColor2,
-                    onPressed: () {},
+                    onPressed: (buttontext) {
+                      setState(() {
+                        brain.input(buttontext);
+                        displayText = brain.displayText ?? "0";
+                      });
+                      print(buttontext);
+                    },
                   ),
                   CalcButton(
                     buttonText: ".",
                     buttonColour: buttonColor2,
-                    onPressed: () {},
+                    onPressed: (buttontext) {
+                      print(buttontext);
+                    },
                   ),
                   CalcButton(
                     buttonText: "=",
                     buttonColour: Colors.orange,
-                    onPressed: () {},
+                    onPressed: (buttontext) {
+                      print(buttontext);
+                    },
                   ),
                 ],
               ),

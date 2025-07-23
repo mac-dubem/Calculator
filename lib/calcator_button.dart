@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class CalcButton extends StatelessWidget {
   const CalcButton({
     super.key,
@@ -10,12 +11,16 @@ class CalcButton extends StatelessWidget {
 
   final String buttonText;
   final Color buttonColour;
-  final void Function() onPressed;
+  final void Function(String) onPressed;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onPressed,
+      onTap: () {
+        
+        onPressed(buttonText);
+        
+        },
       //  () {
       //   print("i press");
       // },
