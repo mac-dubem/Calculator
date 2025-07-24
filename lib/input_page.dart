@@ -3,8 +3,6 @@ import 'calcator_button.dart';
 import 'package:calculator/constants.dart';
 import 'calculator_brain.dart';
 
-CalculatorBrain brain = CalculatorBrain();
-
 class InputPage extends StatefulWidget {
   const InputPage({super.key});
 
@@ -13,7 +11,11 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  String displayText = "0";
+  // String displayText = "0";
+
+  CalculatorBrain brain = CalculatorBrain();
+
+  void onPressed() {}
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class _InputPageState extends State<InputPage> {
                 // crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    displayText,
+                    brain.display,
                     textAlign: TextAlign.right,
                     style: TextStyle(
                       fontSize: 80,
@@ -79,7 +81,11 @@ class _InputPageState extends State<InputPage> {
                     buttonText: "AC",
                     buttonColour: buttonColor1,
                     onPressed: (buttontext) {
-                      brain.input(buttontext);
+                      setState(() {
+                        brain.input(buttontext);
+                        // displayText = brain.display;
+                      });
+
                       print(buttontext);
                     },
                   ),
@@ -87,6 +93,7 @@ class _InputPageState extends State<InputPage> {
                     buttonText: "+/-",
                     buttonColour: buttonColor1,
                     onPressed: (buttontext) {
+                      setState(() {});
                       print(buttontext);
                     },
                   ),
@@ -101,6 +108,9 @@ class _InputPageState extends State<InputPage> {
                     buttonText: "/",
                     buttonColour: Colors.orange,
                     onPressed: (buttontext) {
+                      setState(() {
+                        brain.input(buttontext);
+                      });
                       print(buttontext);
                     },
                   ),
@@ -115,18 +125,19 @@ class _InputPageState extends State<InputPage> {
                     onPressed: (buttontext) {
                       setState(() {
                         brain.input(buttontext);
-                        displayText = brain.displayText ?? "0";
-                        print(buttontext);
+                        // displayText = brain.display;
                       });
+                      print(buttontext);
                     },
                   ),
+
                   CalcButton(
                     buttonText: "8",
                     buttonColour: buttonColor2,
                     onPressed: (buttontext) {
                       setState(() {
                         brain.input(buttontext);
-                        displayText = brain.displayText ?? "0";
+                        // displayText = brain.display;
                       });
                       print(buttontext);
                     },
@@ -137,7 +148,7 @@ class _InputPageState extends State<InputPage> {
                     onPressed: (buttontext) {
                       setState(() {
                         brain.input(buttontext);
-                        displayText = brain.displayText ?? "0";
+                        // displayText = brain.display;
                       });
                       print(buttontext);
                     },
@@ -146,6 +157,9 @@ class _InputPageState extends State<InputPage> {
                     buttonText: "x",
                     buttonColour: Colors.orange,
                     onPressed: (buttontext) {
+                      setState(() {
+                        brain.input(buttontext);
+                      });
                       print(buttontext);
                     },
                   ),
@@ -160,7 +174,7 @@ class _InputPageState extends State<InputPage> {
                     onPressed: (buttontext) {
                       setState(() {
                         brain.input(buttontext);
-                        displayText = brain.displayText ?? "0";
+                        // displayText = brain.display;
                       });
                       print(buttontext);
                     },
@@ -171,7 +185,7 @@ class _InputPageState extends State<InputPage> {
                     onPressed: (buttontext) {
                       setState(() {
                         brain.input(buttontext);
-                        displayText = brain.displayText ?? "0";
+                        // displayText = brain.display;
                       });
                       print(buttontext);
                     },
@@ -182,7 +196,7 @@ class _InputPageState extends State<InputPage> {
                     onPressed: (buttontext) {
                       setState(() {
                         brain.input(buttontext);
-                        displayText = brain.displayText ?? "0";
+                        // displayText = brain.display;
                       });
                       print(buttontext);
                     },
@@ -191,6 +205,9 @@ class _InputPageState extends State<InputPage> {
                     buttonText: "-",
                     buttonColour: Colors.orange,
                     onPressed: (buttontext) {
+                      setState(() {
+                        brain.input(buttontext);
+                      });
                       print(buttontext);
                     },
                   ),
@@ -205,7 +222,7 @@ class _InputPageState extends State<InputPage> {
                     onPressed: (buttontext) {
                       setState(() {
                         brain.input(buttontext);
-                        displayText = brain.displayText ?? "0";
+                        // displayText = brain.display;
                       });
                       print(buttontext);
                     },
@@ -214,8 +231,11 @@ class _InputPageState extends State<InputPage> {
                     buttonText: "2",
                     buttonColour: buttonColor2,
                     onPressed: (buttontext) {
-                      brain.input(buttontext);
-                      displayText = brain.displayText ?? "0";
+                      setState(() {
+                        brain.input(buttontext);
+                        // displayText = brain.display;
+                      });
+
                       print(buttontext);
                     },
                   ),
@@ -225,7 +245,7 @@ class _InputPageState extends State<InputPage> {
                     onPressed: (buttontext) {
                       setState(() {
                         brain.input(buttontext);
-                        displayText = brain.displayText ?? "0";
+                        // displayText = brain.display;
                       });
                       print(buttontext);
                     },
@@ -234,6 +254,9 @@ class _InputPageState extends State<InputPage> {
                     buttonText: "+",
                     buttonColour: Colors.orange,
                     onPressed: (buttontext) {
+                      setState(() {
+                        brain.input(buttontext);
+                      });
                       print(buttontext);
                     },
                   ),
@@ -255,7 +278,7 @@ class _InputPageState extends State<InputPage> {
                     onPressed: (buttontext) {
                       setState(() {
                         brain.input(buttontext);
-                        displayText = brain.displayText ?? "0";
+                        // displayText = brain.display;
                       });
                       print(buttontext);
                     },
@@ -271,6 +294,9 @@ class _InputPageState extends State<InputPage> {
                     buttonText: "=",
                     buttonColour: Colors.orange,
                     onPressed: (buttontext) {
+                      setState(() {
+                        brain.input(buttontext);
+                      });
                       print(buttontext);
                     },
                   ),
