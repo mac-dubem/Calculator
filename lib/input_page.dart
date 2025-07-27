@@ -93,7 +93,9 @@ class _InputPageState extends State<InputPage> {
                     buttonText: "+/-",
                     buttonColour: buttonColor1,
                     onPressed: (buttontext) {
-                      setState(() {});
+                      setState(() {
+                        brain.input(buttontext);
+                      });
                       print(buttontext);
                     },
                   ),
@@ -101,6 +103,9 @@ class _InputPageState extends State<InputPage> {
                     buttonText: "%",
                     buttonColour: buttonColor1,
                     onPressed: (buttontext) {
+                      setState(() {
+                        brain.input(buttontext);
+                      });
                       print(buttontext);
                     },
                   ),
@@ -158,7 +163,7 @@ class _InputPageState extends State<InputPage> {
                     buttonColour: Colors.orange,
                     onPressed: (buttontext) {
                       setState(() {
-                        brain.input(buttontext);
+                        brain.input("*");
                       });
                       print(buttontext);
                     },
@@ -287,6 +292,9 @@ class _InputPageState extends State<InputPage> {
                     buttonText: ".",
                     buttonColour: buttonColor2,
                     onPressed: (buttontext) {
+                      setState(() {
+                        brain.input(buttontext);
+                      });
                       print(buttontext);
                     },
                   ),
