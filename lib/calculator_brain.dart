@@ -19,21 +19,21 @@ class CalculatorBrain {
       _operator = value;
       _clear = true;
     } else if (value == "=") {
-      double? secondOperand = double.tryParse(_display);
-      if (_firstNum != null && _operator != null && secondOperand != null) {
+      double? secondNum = double.tryParse(_display);
+      if (_firstNum != null && _operator != null && secondNum != null) {
         switch (_operator) {
           case "+":
-            _display = (_firstNum! + secondOperand).toString();
+            _display = (_firstNum! + secondNum).toString();
             break;
           case "-":
-            _display = (_firstNum! - secondOperand).toString();
+            _display = (_firstNum! - secondNum).toString();
             break;
           case "x":
-            _display = (_firstNum! * secondOperand).toString();
+            _display = (_firstNum! * secondNum).toString();
             break;
           case "/":
-            _display = (secondOperand != 0)
-                ? (_firstNum! / secondOperand).toString()
+            _display = (secondNum != 0)
+                ? (_firstNum! / secondNum).toString()
                 : "Error";
             break;
         }
