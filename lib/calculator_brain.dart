@@ -18,11 +18,20 @@ class CalculatorBrain {
       try {
         Parser p = Parser();
         ContextModel cm = ContextModel();
+
+        // Replace symbols for math_expressions to understand
         String parsedExpression = _calculate
             // .replaceAll("x", "*")
             .replaceAll("%", "/100");
         Expression exp = p.parse(parsedExpression);
-        _calculate = exp.evaluate(EvaluationType.REAL, cm).toString();
+        double result = exp.evaluate(EvaluationType.REAL, cm);
+
+        // Remove .0 if result is a whole number
+        if (result == result.toInt()) {
+          _calculate = result.toInt().toString();
+        } else {
+          _calculate = result.toString();
+        }
         _display = _calculate;
       } catch (e) {
         _display = "Error";
@@ -52,8 +61,12 @@ class CalculatorBrain {
     } else if (value == ".") {
       final parts = _calculate.split(RegExp(r'[+\-x*/]'));
       final lastNumber = parts.isNotEmpty ? parts.last : "";
+
+      // Prevent multiple dots in the SAME number
       if (lastNumber.contains(".")) return;
-      if (_calculate.isEmpty || (RegExp(r'[+\-x*/]').hasMatch(_calculate))) {
+
+      // If starting a new number after operator or empty
+      if (lastNumber.isEmpty) {
         _calculate += "0";
       } else {
         _calculate += ".";
@@ -63,6 +76,8 @@ class CalculatorBrain {
       _calculate += value;
       _display = _calculate;
     }
+
+
 
     // if (value == "AC") {
     //   _display = "0";
@@ -112,81 +127,3 @@ class CalculatorBrain {
     // }
   }
 }
-
-// class CalculatorBrain {
-//   double? firstNum = 0;
-//   double? secondNum = 0;
-//   String? operator;
-//   String? displayText;
-//   bool waitForSecondNum = false;
-
-//   void _clear() {
-//     firstNum = null;
-//     secondNum = null;
-//     displayText = "0";
-//     operator = null;
-//     waitForSecondNum = false;
-//   }
-
-//   void input(String value) {
-//     if (value == "AC") {
-//       _clear();
-//     } else if (["+", "-", "x", "/"].contains(value)) {
-//       firstNum = double.tryParse(displayText ?? "0");
-//       operator = value;
-//       waitForSecondNum = true;
-//       displayText = "0";
-//     } else if (value == "=") {
-//       secondNum = double.parse(displayText ?? "0");
-//       _calculate();
-//       operator = null;
-//       waitForSecondNum = false;
-//       // } else if (value == ".") {
-//       //   if (_displayText.contains(".")) {
-//       //     _displayText += ".";
-//       //   }
-//       // } else if (value == "+/-") {
-//       //   if (_displayText != "0") {
-//       //     if (_displayText.startsWith("-")) {
-//       //       _displayText = _displayText.substring(1);
-//       //     } else {
-//       //       _displayText = "-$_displayText";
-//       //     }
-//       //   }
-//     } else if (value == "%") {
-//       double num = double.tryParse(displayText ?? "0") ?? 0;
-//       displayText = (num / 100).toString();
-//     } else {
-//       // Number pressed
-//       if (displayText == "0" || waitForSecondNum) {
-//         displayText = value;
-//         waitForSecondNum = false;
-//       } else {
-//         displayText = (displayText ?? "0") + value;
-//       }
-//     }
-//   }
-
-//   void _calculate() {
-//     double result = 0;
-//     switch (operator) {
-//       case "+":
-//         result = (firstNum ?? 0) + (secondNum ?? 0);
-//         break;
-//       case "-":
-//         result = (firstNum ?? 0) - (secondNum ?? 0);
-//         break;
-//       case "x":
-//         result = (firstNum ?? 0) * (secondNum ?? 0);
-//         break;
-//       case "/":
-//         result = (secondNum != 0)
-//             ? (firstNum ?? 0) / (secondNum ?? 0)
-//             : double.nan;
-//         break;
-//       default:
-//         result = double.tryParse(displayText ?? "0") ?? 0;
-//     }
-//     displayText = result.toString();
-//   }
-// }

@@ -37,13 +37,17 @@ class _InputPageState extends State<InputPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 // crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(
-                    brain.display,
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      fontSize: 80,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    reverse: true,
+                    child: Text(
+                      brain.display,
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                        fontSize: 80,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ],
