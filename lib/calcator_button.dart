@@ -21,7 +21,7 @@ class CalcButton extends StatelessWidget {
         height: (MediaQuery.of(context).size.width - 30 - 24) / 4,
         width: (MediaQuery.of(context).size.width - 30 - 24) / 4,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(70),
+          borderRadius: BorderRadius.circular(50),
           color: buttonColour,
         ),
         child: Center(

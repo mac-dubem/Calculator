@@ -28,7 +28,9 @@ class CalculatorBrain {
         _display = "Error";
         _calculate = "";
       }
-    } else if (value == "-/+") {
+
+      // =========== POSITIVE / NEGATIVE SIGN =========
+    } else if (value == "+/-") {
       final regex = RegExp(
         r'([\-]?\d+\.?\d*)$',
       ); //This line sets up a regular expression to find the last number typed
@@ -45,8 +47,18 @@ class CalculatorBrain {
         _calculate = _calculate.replaceRange(match.start, match.end, toggled);
         _display = _calculate;
       }
-      // } else if (value == ".") {
-      //   final parts =
+
+      // ================== DECIMAL POINT ======================
+    } else if (value == ".") {
+      final parts = _calculate.split(RegExp(r'[+\-x*/]'));
+      final lastNumber = parts.isNotEmpty ? parts.last : "";
+      if (lastNumber.contains(".")) return;
+      if (_calculate.isEmpty || (RegExp(r'[+\-x*/]').hasMatch(_calculate))) {
+        _calculate += "0";
+      } else {
+        _calculate += ".";
+      }
+      _display = _calculate;
     } else {
       _calculate += value;
       _display = _calculate;
